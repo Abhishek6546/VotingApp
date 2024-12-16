@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [menu, setmenu] = useState(false);
-
+  const navigate = useNavigate();
   const navItems = [
     {
       id: 1,
@@ -31,7 +31,15 @@ function Navbar() {
       link: "votecount"
     },
   ];
-
+  const token = localStorage.getItem("token");
+  const handleLogin = () => {
+    navigate("/login")
+  }
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    navigate("/")
+  }
+  
   return (
     <div className="max-w-screen-2xl container mx-auto px-4 md:px-20 h-16 shadow-md bg-slate-200 top-0 left-0 right-0 z-50">
       <div className="flex justify-between items-center h-16">
@@ -51,7 +59,17 @@ function Navbar() {
                 <Link to={link}>{text}</Link>
               </li>
             ))}
+            {!token ? (
+              <button onClick={handleLogin} className="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                Login
+              </button>
+            ) : <button onClick={handleLogOut} className="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+              LogOut
+            </button>
+            }
+
           </ul>
+
           {/* Hamburger Menu */}
           <div
             onClick={() => setmenu(!menu)}
