@@ -16,7 +16,7 @@ function VoteCount() {
     }
     const fetchVotes = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/candidate/votes');
+        const response = await axios.get('https://votingapp-bj15.onrender.com/candidate/votes');
         setVotes(response.data);
         setLoading(false);
       } catch (error) {

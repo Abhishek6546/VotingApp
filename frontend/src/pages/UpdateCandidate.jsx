@@ -20,7 +20,7 @@ function UpdateCandidate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3000/candidate/${id}`, candidate, {
+            await axios.put(`https://votingapp-bj15.onrender.com/candidate/${id}`, candidate, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

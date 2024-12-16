@@ -16,7 +16,7 @@ function UserProfile() {
         }
         const getUserData = async () => {
             try {
-                const user = await axios.get("http://localhost:3000/user/profile", {
+                const user = await axios.get("https://votingapp-bj15.onrender.com/user/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -33,7 +33,7 @@ function UserProfile() {
     const ChangePassword = async (e) => {
         e.preventDefault();
         try {
-            await axios.put("http://localhost:3000/user/profile/password", {
+            await axios.put("https://votingapp-bj15.onrender.com/user/profile/password", {
                 currentPassword: CurrentPasssword,
                 newPassword: newPasssword,
             }, {

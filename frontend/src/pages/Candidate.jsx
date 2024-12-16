@@ -25,7 +25,7 @@ function Candidate() {
     // Delete candidate
     const deleteCandidate = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/candidate/${id}`, {
+            await axios.delete(`https://votingapp-bj15.onrender.com/candidate/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

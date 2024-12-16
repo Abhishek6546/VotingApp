@@ -18,7 +18,7 @@ function NewCandidate() {
         e.preventDefault();
       
         try {
-            const candidateData = await axios.post("http://localhost:3000/candidate", Candidate, {
+            const candidateData = await axios.post("https://votingapp-bj15.onrender.com/candidate", Candidate, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

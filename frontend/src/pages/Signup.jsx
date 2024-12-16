@@ -23,7 +23,7 @@ function Signup() {
     e.preventDefault();
 
    try {
-    const response = await axios.post("http://localhost:3000/user/signup", formData)
+    const response = await axios.post("https://votingapp-bj15.onrender.com/user/signup", formData)
     if (!response.data.success) {
       alert(response.data);
     }

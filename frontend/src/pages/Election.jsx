@@ -18,7 +18,7 @@ function Election() {
         }
         const getUserData = async () => {
             try {
-                const user = await axios.get("http://localhost:3000/user/profile", {
+                const user = await axios.get("https://votingapp-bj15.onrender.com/user/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -32,7 +32,7 @@ function Election() {
         getUserData();
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/candidate", {
+                const response = await axios.get("https://votingapp-bj15.onrender.com/candidate", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -49,7 +49,7 @@ function Election() {
     const handleVote = async (id) => {
         try {
             const response = await axios.put(
-                `http://localhost:3000/candidate/vote/${id}`,
+                `https://votingapp-bj15.onrender.com/candidate/vote/${id}`,
                 {},
                 {
                     headers: {
