@@ -20,22 +20,22 @@ function Header() {
 
    
     <section className="py-20">
-      <div className="container mx-auto text-center">
+      <div className="  container mx-auto text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-8">Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-6 bg-white shadow-md rounded">
+          <div className="p-6 bg-white shadow-md rounded hover:scale-105 transition-all duration-300">
             <h3 className="text-xl font-bold text-gray-800 mb-2">Secure Voting</h3>
             <p className="text-gray-600">
               Ensure every vote is safe with end-to-end encryption.
             </p>
           </div>
-          <div className="p-6 bg-white shadow-md rounded">
+          <div className="p-6 bg-white shadow-md rounded hover:scale-105 transition-all duration-300">
             <h3 className="text-xl font-bold text-gray-800 mb-2">Real-time Results</h3>
             <p className="text-gray-600">
               Get instant results after voting ends.
             </p>
           </div>
-          <div className="p-6 bg-white shadow-md rounded">
+          <div className="p-6 mr-4 bg-white shadow-md rounded hover:scale-105 transition-all duration-300">
             <h3 className="text-xl font-bold text-gray-800 mb-2">User-Friendly</h3>
             <p className="text-gray-600">
               An intuitive interface for easy navigation and use.
