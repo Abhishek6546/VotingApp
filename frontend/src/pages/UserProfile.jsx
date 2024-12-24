@@ -63,6 +63,8 @@ function UserProfile() {
                         <div>
                             <h2 className="text-lg font-medium text-gray-700">{userdata.name}</h2>
                             <p className="text-sm text-gray-500">{userdata.email}</p>
+                            <p className="text-sm text-gray-500">{userdata.role}</p>
+
                         </div>
                     </div>
                     <div className="text-gray-600">
