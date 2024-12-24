@@ -1,19 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Candidate() {
     const [candidateData, setCandidateData] = useState([]);
+    const [userdata, setuserdata] = useState(null);
+    const navigate = useNavigate();
 
     // Fetch candidates
     useEffect(() => {
         const getCandidateData = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/candidate/candidates", {
+                const response = await axios.get("https://votingapp-bj15.onrender.com/candidate/candidates", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 });
+               
                 setCandidateData(response.data);
             } catch (error) {
                 console.error("Error fetching candidate data:", error);
@@ -36,15 +39,38 @@ function Candidate() {
             console.error("Error deleting candidate:", error);
         }
     };
+    
+    useEffect(() => {
+        const token = localStorage.getItem("token");
 
+        if (!token) {
+          // Redirect to login if token is missing
+          navigate("/login");
+          return;
+        }
+        const getUserData = async () => {
+            try {
+                const user = await axios.get("https://votingapp-bj15.onrender.com/user/profile", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setuserdata(user.data.user);
+             
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+        getUserData();
+    }, []);
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             {/* Header Section */}
             <div className="flex justify-between items-center max-w-4xl mx-auto mb-8">
                 <h1 className="text-2xl font-bold text-gray-800">Candidates</h1>
-             {candidateData.role==="admin" && (
+             { userdata && userdata.role==="admin" && (
                    <Link to={"/create"}>
-                   <button className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600 transition">
+                   <button className="bg-blue-500 text-white py-1 px-2  md:py-2  md:px-4 rounded-md shadow-md hover:bg-blue-600 transition">
                        Create New Candidate
                    </button>
                </Link>
@@ -64,7 +90,7 @@ function Candidate() {
                                     <p className="text-lg font-medium text-gray-800">{candidate.name}</p>
                                     <p className="text-sm text-gray-500">{candidate.party}</p>
                                 </div>
-                            {candidate.role==="admin" && (
+                            { userdata && userdata.role==="admin" && (
                                     <div className="flex space-x-4">
                                     <Link to={`${candidate._id}`}>
                                         <button className="text-blue-500 hover:underline">Update</button>
