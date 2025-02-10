@@ -7,7 +7,7 @@ const {jwtAuthMiddleware, generateToken} = require('./../jwt');
 router.post('/signup', async (req, res) =>{
     try{
         const data = req.body // Assuming the request body contains the User data
-
+          console.log(data)
         // Check if there is already an admin user
         const adminUser = await User.findOne({ role: 'admin' });
         if (data.role === 'admin' && adminUser) {

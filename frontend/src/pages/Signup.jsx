@@ -22,23 +22,24 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   try {
-    const response = await axios.post("https://votingapp-bj15.onrender.com/user/signup", formData)
-    if (!response.data.success) {
-      alert(response.data);
+    try {
+      const response = await axios.post("https://votingapp-bj15.onrender.com/user/signup", formData)
+      if (!response.data.success) {
+        localStorage.setItem('token', response.data.token)
+        navigate('/');
+      }
+
+    } catch (error) {
+      console.log(error)
     }
-    navigate('/');
-   } catch (error) {
-    console.log(error)
   }
-}
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-96 bg-white shadow-md rounded-lg p-4">
-      <p onClick={()=> navigate("/")} className='flex justify-end cursor-pointer'>X</p>
+        <p onClick={() => navigate("/")} className='flex justify-end cursor-pointer'>X</p>
         <h2 className="text-xl font-bold text-center mb-4">Signup</h2>
-       
+
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
             <label className="block text-gray-700 font-medium text-sm mb-1">Name</label>
